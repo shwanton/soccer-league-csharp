@@ -3,6 +3,8 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "League", "League\League.csproj", "{AE0539C9-F81F-4B5E-B298-7F33DBA7FC49}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{6E2FE9A7-A24D-4A1F-B450-CE9CBC5AAA9B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -13,5 +15,9 @@ Global
 		{AE0539C9-F81F-4B5E-B298-7F33DBA7FC49}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AE0539C9-F81F-4B5E-B298-7F33DBA7FC49}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AE0539C9-F81F-4B5E-B298-7F33DBA7FC49}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6E2FE9A7-A24D-4A1F-B450-CE9CBC5AAA9B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6E2FE9A7-A24D-4A1F-B450-CE9CBC5AAA9B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6E2FE9A7-A24D-4A1F-B450-CE9CBC5AAA9B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6E2FE9A7-A24D-4A1F-B450-CE9CBC5AAA9B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
