@@ -9,17 +9,24 @@ namespace Tests
 {
     public class GameParserTests
     {
-
         [Fact]
         public void GameParser_Parse_ShouldReturnParsedGames()
         {
-            var data = Fixtures.Input();
-            var parser = new GameParser(data);
+            var loader = new MockDataLoader();
+            var parser = new GameParser(loader);
 
             var expected = Fixtures.Games();
-            var result = parser.Parse();
+            var result = parser.LoadGames();
 
             expected.ShouldDeepEqual(result);
+        }
+    }
+
+    public class MockDataLoader : IDataLoader
+    {
+        public string LoadData()
+        {
+            return Fixtures.Input();
         }
     }
 }

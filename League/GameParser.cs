@@ -5,32 +5,38 @@ using System.Text.RegularExpressions;
 
 namespace League
 {
-    public class GameParser
+    public interface IGameParser
     {
-        private string _data;
+        List<Game> LoadGames();
+    }
 
-        public GameParser(string data)
+    public class GameParser : IGameParser
+    {
+        private readonly IDataLoader _loader;
+
+        public GameParser(IDataLoader loader)
         {
-            _data = data;
+            _loader = loader;
         }
 
-        public List<Game> Parse()
+        public List<Game> LoadGames()
         {
-            return _data
+            return _loader
+                .LoadData()
                 .Split("\n")
                 .Where(line => !string.IsNullOrEmpty(line))
                 .Select(line =>
+            {
+                string pattern = @"^([\w ]+) (\d+), ([\w ]+) (\d+)";
+                Match m = Regex.Match(line, pattern, RegexOptions.Singleline);
+                GroupCollection groups = m.Groups;
+                
+                return new Game()
                 {
-                    string pattern = @"^([\w ]+) (\d+), ([\w ]+) (\d+)";
-                    Match m = Regex.Match(line, pattern, RegexOptions.Singleline);
-                    GroupCollection groups = m.Groups;
-
-                    return new Game()
-                    {
-                        Team1 = CreateTeam(groups[1].Value, groups[2].Value),
-                        Team2 = CreateTeam(groups[3].Value, groups[4].Value),
-                    };
-                })
+                    Team1 = CreateTeam(groups[1].Value, groups[2].Value),
+                    Team2 = CreateTeam(groups[3].Value, groups[4].Value),
+                };
+            })
                 .ToList();
         }
 

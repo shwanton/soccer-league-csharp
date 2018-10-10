@@ -14,9 +14,10 @@ namespace League
                 if (fileName == null)
                     throw new FileNotFoundException();
 
-                var result = new LeagueStats(new FileLoader(fileName));
+                var loader = new GameParser(new FileLoader(fileName));
+                var league = new LeagueStats(loader);
 
-                Console.Write(result.GetSeason());
+                Console.Write(league.GetSeason());
                 
             }
             catch (Exception ex)

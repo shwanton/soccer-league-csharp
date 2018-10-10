@@ -21,7 +21,7 @@ namespace Tests
                 }
             });
 
-            var loader = new FileLoader(fileSystem, fileName);
+            var loader = new GameParser(new FileLoader(fileSystem, fileName));
             var league = new LeagueStats(loader);
 
             var expected = Fixtures.Output();

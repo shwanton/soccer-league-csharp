@@ -4,20 +4,21 @@ namespace League
 {
     public class LeagueStats
     {
-        private FileLoader _loader;
+        private readonly IGameParser _parser;
 
-        public LeagueStats(FileLoader loader)
+        public LeagueStats(IGameParser parser)
         {
-            _loader = loader;
+            _parser = parser;
         }
 
         public string GetSeason()
         {
-            var data = _loader.LoadData();
-            var parsed = new GameParser(data).Parse();
-            var stats = new StatsCalulator(parsed).Calculate();
+            var data = _parser.LoadGames();
+
+            var stats = new StatsCalulator(data).Calculate();
             var sorted = new Sorter(stats).Sort();
             var ranked = new Ranker(sorted).Rank();
+
             return new Printer(ranked).Print();
         }
     }
