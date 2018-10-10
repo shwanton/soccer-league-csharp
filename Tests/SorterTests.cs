@@ -14,6 +14,7 @@ namespace Tests
         {
             var stats = Fixtures.Stats();
             var sorter = new Sorter(stats);
+
             var expected = Fixtures.Sorted();
 
             expected.ShouldDeepEqual(sorter.Sort());

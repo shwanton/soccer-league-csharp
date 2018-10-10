@@ -8,15 +8,6 @@ namespace League
     {
         static void Main(string[] args)
         {
-            // **Read data - Data Loader**
-            // **Parse data into object**
-            // **Calculate season scores**
-            // **Sort**
-            // **Calculate ranking number**
-            // **Print**
-
-            // TODO: Refactor Team/Game
-
             try
             {
                 var fileName = args[0];
@@ -35,7 +26,7 @@ namespace League
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"There was a problem loading the file: {ex}");
+                Console.WriteLine($"There was a problem with the League: {ex}");
             }
         }
     }

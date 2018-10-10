@@ -18,38 +18,28 @@ namespace League
             return _games
                 .Aggregate(new Dictionary<string, Team>(), (acc, game) =>
                 {
-                    Team team1 = game.Team1;
-                    Team team2 = game.Team2;
+                    if (!acc.ContainsKey(game.Team1.Name))
+                        acc.Add(game.Team1.Name, new Team() { Name = game.Team1.Name, Score = 0 });
 
-                    if (!acc.ContainsKey(team1.Name))
-                        acc.Add(team1.Name, new Team() { Name = team1.Name, Score = 0 });
+                    if (!acc.ContainsKey(game.Team2.Name))
+                        acc.Add(game.Team2.Name, new Team() { Name = game.Team2.Name, Score = 0 });
 
-                    if (!acc.ContainsKey(team2.Name))
-                        acc.Add(team2.Name, new Team() { Name = team2.Name, Score = 0 });
+                    var seasonTeam1 = acc[game.Team1.Name];
+                    var seasonTeam2 = acc[game.Team2.Name];
 
-                    var newTeam1 = acc[team1.Name];
-                    var newTeam2 = acc[team2.Name];
-
-                    if (team1.Points > team2.Points)
+                    if (game.Team1.Points > game.Team2.Points)
                     {
-                        newTeam1.Score += 3;
-                    } else if (team2.Points > team1.Points)
+                        seasonTeam1.Score += 3;
+                    } else if (game.Team2.Points > game.Team1.Points)
                     {
-                        newTeam2.Score += 3;
+                        seasonTeam2.Score += 3;
                     }
                     else
                     {
-                        newTeam1.Score += 1;
-                        newTeam2.Score += 1;
+                        seasonTeam1.Score += 1;
+                        seasonTeam2.Score += 1;
                     }
 
-                    //acc[team1.Name] = newTeam1;
-                    //acc[team2.Name] = newTeam2;
-
-                    //foreach (var score in acc)
-                    //{
-                    //    Console.WriteLine(score);
-                    //}
                     return acc;
                 })
                 .Values
