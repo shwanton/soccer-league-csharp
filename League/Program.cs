@@ -14,14 +14,9 @@ namespace League
                 if (fileName == null)
                     throw new FileNotFoundException();
 
-                var data = new FileLoader(fileName).LoadData();
-                var parsed = new GameParser(data).Parse();
-                var stats = new StatsCalulator(parsed).Calculate();
-                var sorted = new Sorter(stats).Sort();
-                var ranked = new Ranker(sorted).Rank();
-                var result = new Printer(ranked).Print();
+                var result = new LeagueStats(new FileLoader(fileName));
 
-                Console.Write(result);
+                Console.Write(result.GetSeason());
                 
             }
             catch (Exception ex)

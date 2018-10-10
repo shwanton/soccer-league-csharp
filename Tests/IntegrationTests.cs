@@ -20,16 +20,12 @@ namespace Tests
                     fileName, new MockFileData(input)
                 }
             });
-            var loader = new FileLoader(fileSystem, fileName);
-            var data = loader.LoadData();
 
-            var parsed = new GameParser(data).Parse();
-            var stats = new StatsCalulator(parsed).Calculate();
-            var sorted = new Sorter(stats).Sort();
-            var ranked = new Ranker(sorted).Rank();
-            var result = new Printer(ranked).Print();
+            var loader = new FileLoader(fileSystem, fileName);
+            var league = new LeagueStats(loader);
 
             var expected = Fixtures.Output();
+            var result = league.GetSeason();
 
             Assert.Equal(expected, result);
         }
