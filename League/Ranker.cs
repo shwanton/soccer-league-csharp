@@ -22,20 +22,24 @@ namespace League
                     {
                         Name = team.Name,
                         Score = team.Score,
-                        Rank = CalculateRank(team, index),
+                        Rank = CalculateRank(team, index, IncrementRule),
                         GoalDiff = team.GoalDiff,
                     };
                 }).ToList();
         }
 
-        private int CalculateRank(Team team, int index)
+        private int CalculateRank(Team team, int index, Func<Team, Team, bool> increment)
         {
             if (index < 1)
                 return 1;
 
-            var prev = _teams[index - 1];
-            var unchanged = (team.GoalDiff == prev.GoalDiff && team.Score == prev.Score);
-            return unchanged ? index : index + 1;
+
+            return increment(team, _teams[index - 1]) ? index + 1 : index;
+        }
+
+        private bool IncrementRule(Team team, Team prev)
+        {
+            return (team.GoalDiff != prev.GoalDiff || team.Score != prev.Score);
         }
     }
 }
