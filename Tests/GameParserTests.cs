@@ -16,9 +16,8 @@ namespace Tests
             var parser = new GameParser(loader);
 
             var expected = Fixtures.Games();
-            var result = parser.LoadGames();
 
-            expected.ShouldDeepEqual(result);
+            expected.ShouldDeepEqual(parser.LoadGames());
         }
     }
 

@@ -12,12 +12,10 @@ namespace Tests
         public void Integration_ShouldPrintLeagueStats()
         {
             var fileName = "test.txt";
-            var input = Fixtures.Input();
-
             var fileSystem = new MockFileSystem(new Dictionary<string, MockFileData>
             {
                 {
-                    fileName, new MockFileData(input)
+                    fileName, new MockFileData(Fixtures.Input())
                 }
             });
 
@@ -25,9 +23,8 @@ namespace Tests
             var league = new LeagueStats(loader);
 
             var expected = Fixtures.Output();
-            var result = league.GetSeason();
 
-            Assert.Equal(expected, result);
+            Assert.Equal(expected, league.GetSeason());
         }
     }
 }
