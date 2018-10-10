@@ -23,10 +23,11 @@ namespace League
 
                 var data = new FileLoader(fileName).LoadData();
                 var parsed = new GameParser(data).Parse();
+                var stats = new StatsCalulator(parsed).Calculate();
 
-                foreach (var line in parsed)
+                foreach (var line in stats)
                 {
-                    Console.WriteLine(line.Values);
+                    Console.WriteLine(line);
                 }
             }
             catch (Exception ex)

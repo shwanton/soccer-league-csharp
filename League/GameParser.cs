@@ -14,7 +14,7 @@ namespace League
             _data = data;
         }
 
-        public IEnumerable<Dictionary<string, string>> Parse()
+        public List<Dictionary<string, string>> Parse()
         {
             return _data
                 .Split("\n")
