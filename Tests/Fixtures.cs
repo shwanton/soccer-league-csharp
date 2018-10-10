@@ -48,25 +48,25 @@ namespace Tests
             };
         }
 
-        public static List<KeyValuePair<string, int>> Stats()
+        public static List<Team> Stats()
         {
-            return new List<KeyValuePair<string, int>>
+            return new List<Team>
             {
-                KeyValuePair.Create<string, int>("Lions", 2),
-                KeyValuePair.Create<string, int>("Snakes", 1),
-                KeyValuePair.Create<string, int>("Tarantulas", 3),
-                KeyValuePair.Create<string, int>("FC Awesome", 1),
+                new Team() { Name="Lions", Score=2 },
+                new Team() { Name="Snakes", Score=1 },
+                new Team() { Name="Tarantulas", Score=3 },
+                new Team() { Name="FC Awesome", Score=1 },
             };
         }
 
-        public static List<KeyValuePair<string, int>> Sorted()
+        public static List<Team> Sorted()
         {
-            return new List<KeyValuePair<string, int>>
+            return new List<Team>
             {
-                KeyValuePair.Create<string, int>("Tarantulas", 3),
-                KeyValuePair.Create<string, int>("Lions", 2),
-                KeyValuePair.Create<string, int>("FC Awesome", 1),
-                KeyValuePair.Create<string, int>("Snakes", 1),
+                new Team() { Name="Tarantulas", Score=3 },
+                new Team() { Name="Lions", Score=2 },
+                new Team() { Name="FC Awesome", Score=1 },
+                new Team() { Name="Snakes", Score=1 },
             };
         }
     }

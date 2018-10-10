@@ -13,38 +13,38 @@ namespace League
             _games = games;
         }
 
-        public List<KeyValuePair<string, int>> Calculate()
+        public List<Team> Calculate()
         {
             return _games
-                .Aggregate(new Dictionary<string, int>(), (acc, game) =>
+                .Aggregate(new Dictionary<string, Team>(), (acc, game) =>
                 {
                     Team team1 = game["team1"];
                     Team team2 = game["team2"];
 
                     if (!acc.ContainsKey(team1.Name))
-                        acc.Add(team1.Name, 0);
+                        acc.Add(team1.Name, new Team() { Name = team1.Name, Score = 0 });
 
                     if (!acc.ContainsKey(team2.Name))
-                        acc.Add(team2.Name, 0);
+                        acc.Add(team2.Name, new Team() { Name = team2.Name, Score = 0 });
 
-                    var team1Score = acc[team1.Name];
-                    var team2Score = acc[team2.Name];
+                    var newTeam1 = acc[team1.Name];
+                    var newTeam2 = acc[team2.Name];
 
                     if (team1.Points > team2.Points)
                     {
-                        team1Score += 3;
+                        newTeam1.Score += 3;
                     } else if (team2.Points > team1.Points)
                     {
-                        team2Score += 3;
+                        newTeam2.Score += 3;
                     }
                     else
                     {
-                        team1Score += 1;
-                        team2Score += 1;
+                        newTeam1.Score += 1;
+                        newTeam2.Score += 1;
                     }
 
-                    acc[team1.Name] = team1Score;
-                    acc[team2.Name] = team2Score;
+                    //acc[team1.Name] = newTeam1;
+                    //acc[team2.Name] = newTeam2;
 
                     //foreach (var score in acc)
                     //{
@@ -52,6 +52,7 @@ namespace League
                     //}
                     return acc;
                 })
+                .Values
                 .ToList();
         }
     }

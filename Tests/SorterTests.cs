@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Xunit;
 using System.Linq;
 using League;
+using DeepEqual.Syntax;
 
 namespace Tests
 {
@@ -15,7 +16,7 @@ namespace Tests
             var sorter = new Sorter(stats);
             var expected = Fixtures.Sorted();
 
-            Assert.Equal(expected, sorter.Sort());
+            expected.ShouldDeepEqual(sorter.Sort());
         }
     }
 }

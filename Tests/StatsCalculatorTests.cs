@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using DeepEqual.Syntax;
 using League;
 using Xunit;
 
@@ -15,7 +16,7 @@ namespace Tests
 
             var expected = Fixtures.Stats();
 
-            Assert.Equal(expected, stats.Calculate());
+            expected.ShouldDeepEqual(stats.Calculate());
         }
     }
 
