@@ -27,8 +27,9 @@ namespace League
                 var parsed = new GameParser(data).Parse();
                 var stats = new StatsCalulator(parsed).Calculate();
                 var sorted = new Sorter(stats).Sort();
+                var ranked = new Ranker(sorted).Rank();
 
-                foreach (var team in sorted)
+                foreach (var team in ranked)
                 {
                     Console.WriteLine($"{team.Name} : {team.Score} : {team.Rank}");
                 }

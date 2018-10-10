@@ -8,7 +8,7 @@ namespace Tests
     {
         public static string Input()
         {
-            return "Lions 3, Snakes 3\nTarantulas 1, FC Awesome 0\nLions 1, FC Awesome 1\n";
+            return "Lions 3, Snakes 3\nTarantulas 1, FC Awesome 0\nLions 1, FC Awesome 1\nTarantulas 3, Snakes 1\nLions 4, Grouches 0\n";
         }
 
         public static List<Dictionary<string, Team>> Games()
@@ -23,7 +23,6 @@ namespace Tests
                         "team2", new Team() { Name="Snakes", Points=3 }
                     },
                 },
-
                 new Dictionary<string, Team>
                 {
                     {
@@ -34,7 +33,6 @@ namespace Tests
 
                     },
                 },
-
                 new Dictionary<string, Team>
                 {
                     {
@@ -42,6 +40,26 @@ namespace Tests
                     },
                     {
                         "team2", new Team() { Name="FC Awesome", Points=1 }
+
+                    },
+                },
+                new Dictionary<string, Team>
+                {
+                    {
+                        "team1", new Team() { Name="Tarantulas", Points=3 }
+                    },
+                    {
+                        "team2", new Team() { Name="Snakes", Points=1 }
+
+                    },
+                },
+                new Dictionary<string, Team>
+                {
+                    {
+                        "team1", new Team() { Name="Lions", Points=4 }
+                    },
+                    {
+                        "team2", new Team() { Name="Grouches", Points=0 }
 
                     },
                 }
@@ -52,10 +70,11 @@ namespace Tests
         {
             return new List<Team>
             {
-                new Team() { Name="Lions", Score=2 },
+                new Team() { Name="Lions", Score=5 },
                 new Team() { Name="Snakes", Score=1 },
-                new Team() { Name="Tarantulas", Score=3 },
+                new Team() { Name="Tarantulas", Score=6 },
                 new Team() { Name="FC Awesome", Score=1 },
+                new Team() { Name="Grouches", Score=0 },
             };
         }
 
@@ -63,10 +82,23 @@ namespace Tests
         {
             return new List<Team>
             {
-                new Team() { Name="Tarantulas", Score=3 },
-                new Team() { Name="Lions", Score=2 },
+                new Team() { Name="Tarantulas", Score=6 },
+                new Team() { Name="Lions", Score=5 },
                 new Team() { Name="FC Awesome", Score=1 },
                 new Team() { Name="Snakes", Score=1 },
+                new Team() { Name="Grouches", Score=0 },
+            };
+        }
+
+        public static List<Team> Ranked()
+        {
+            return new List<Team>
+            {
+                new Team() { Name="Tarantulas", Score=6, Rank=1 },
+                new Team() { Name="Lions", Score=5, Rank=2 },
+                new Team() { Name="FC Awesome", Score=1, Rank=3 },
+                new Team() { Name="Snakes", Score=1, Rank=3 },
+                new Team() { Name="Grouches", Score=0, Rank=4 },
             };
         }
     }
