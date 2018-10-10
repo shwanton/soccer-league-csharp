@@ -8,6 +8,12 @@ namespace League
     {
         private List<Game> _games;
 
+        public enum Scoring : int
+        {
+            Tie = 1,
+            Win = 3,
+        }
+
         public StatsCalulator(List<Game> games)
         {
             _games = games;
@@ -29,15 +35,16 @@ namespace League
 
                     if (game.Team1.Points > game.Team2.Points)
                     {
-                        seasonTeam1.Score += 3;
-                    } else if (game.Team2.Points > game.Team1.Points)
+                        seasonTeam1.Score += (int)Scoring.Win;
+                    }
+                    else if (game.Team2.Points > game.Team1.Points)
                     {
-                        seasonTeam2.Score += 3;
+                        seasonTeam2.Score += (int)Scoring.Win;
                     }
                     else
                     {
-                        seasonTeam1.Score += 1;
-                        seasonTeam2.Score += 1;
+                        seasonTeam1.Score += (int)Scoring.Tie;
+                        seasonTeam2.Score += (int)Scoring.Tie;
                     }
 
                     seasonTeam1.GoalDiff += game.Team1.Points - game.Team2.Points;
