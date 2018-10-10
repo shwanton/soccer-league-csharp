@@ -10,10 +10,12 @@ namespace League
         {
             // **Read data - Data Loader**
             // **Parse data into object**
-            // Calculate season scores
+            // **Calculate season scores**
             // Sort
             // Calculate ranking number
             // Print
+
+            // TODO: Refactor Team/Game
 
             try
             {
@@ -24,8 +26,9 @@ namespace League
                 var data = new FileLoader(fileName).LoadData();
                 var parsed = new GameParser(data).Parse();
                 var stats = new StatsCalulator(parsed).Calculate();
+                var sorted = new Sorter(stats).Sort();
 
-                foreach (var line in stats)
+                foreach (var line in sorted)
                 {
                     Console.WriteLine(line);
                 }

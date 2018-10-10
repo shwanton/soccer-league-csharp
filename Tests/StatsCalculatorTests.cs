@@ -11,7 +11,6 @@ namespace Tests
         public void StatsCalculator_Calculate_ShouldCalculateScores()
         {
             var games = Fixtures.Games();
-
             var stats = new StatsCalulator(games);
 
             var expected = Fixtures.Stats();

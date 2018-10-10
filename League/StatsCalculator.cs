@@ -30,10 +30,10 @@ namespace League
                     var team1Score = acc[team1.Name];
                     var team2Score = acc[team2.Name];
 
-                    if (team1Score > team2Score)
+                    if (team1.Points > team2.Points)
                     {
                         team1Score += 3;
-                    } else if (team2Score > team1Score)
+                    } else if (team2.Points > team1.Points)
                     {
                         team2Score += 3;
                     }
