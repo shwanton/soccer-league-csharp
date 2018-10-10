@@ -4,6 +4,20 @@ using System.Linq;
 
 namespace League
 {
+    public interface IIncrementRank
+    {
+         bool CanIncrement(Team team, Team prev);
+    }
+
+    public struct GoalScoreIncrement : IIncrementRank
+    {
+        public bool CanIncrement(Team team, Team prev)
+        {
+            return (team.GoalDiff != prev.GoalDiff || team.Score != prev.Score);
+        }
+    }
+
+
     public class Ranker
     {
         private List<Team> _teams;
@@ -22,24 +36,19 @@ namespace League
                     {
                         Name = team.Name,
                         Score = team.Score,
-                        Rank = CalculateRank(team, index, IncrementRule),
+                        Rank = CalculateRank(team, index, new GoalScoreIncrement().CanIncrement),
                         GoalDiff = team.GoalDiff,
                     };
                 }).ToList();
         }
 
-        private int CalculateRank(Team team, int index, Func<Team, Team, bool> increment)
+        private int CalculateRank(Team team, int index, Func<Team, Team, bool> canIncrement)
         {
             if (index < 1)
                 return 1;
 
 
-            return increment(team, _teams[index - 1]) ? index + 1 : index;
-        }
-
-        private bool IncrementRule(Team team, Team prev)
-        {
-            return (team.GoalDiff != prev.GoalDiff || team.Score != prev.Score);
+            return canIncrement(team, _teams[index - 1]) ? index + 1 : index;
         }
     }
 }
