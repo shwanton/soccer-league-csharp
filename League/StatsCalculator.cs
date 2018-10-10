@@ -6,9 +6,9 @@ namespace League
 {
     public class StatsCalulator
     {
-        private List<Dictionary<string, Team>> _games;
+        private List<Game> _games;
 
-        public StatsCalulator(List<Dictionary<string, Team>> games)
+        public StatsCalulator(List<Game> games)
         {
             _games = games;
         }
@@ -18,8 +18,8 @@ namespace League
             return _games
                 .Aggregate(new Dictionary<string, Team>(), (acc, game) =>
                 {
-                    Team team1 = game["team1"];
-                    Team team2 = game["team2"];
+                    Team team1 = game.Team1;
+                    Team team2 = game.Team2;
 
                     if (!acc.ContainsKey(team1.Name))
                         acc.Add(team1.Name, new Team() { Name = team1.Name, Score = 0 });

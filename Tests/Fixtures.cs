@@ -11,58 +11,34 @@ namespace Tests
             return "Lions 3, Snakes 3\nTarantulas 1, FC Awesome 0\nLions 1, FC Awesome 1\nTarantulas 3, Snakes 1\nLions 4, Grouches 0\n";
         }
 
-        public static List<Dictionary<string, Team>> Games()
+        public static List<Game> Games()
         {
-            return new List<Dictionary<string, Team>> {
-                new Dictionary<string, Team>
+            return new List<Game> {
+                new Game()
                 {
-                    {
-                        "team1", new Team() { Name="Lions", Points=3 }
-                    },
-                    {
-                        "team2", new Team() { Name="Snakes", Points=3 }
-                    },
+                    Team1 = new Team() { Name="Lions", Points=3 },
+                    Team2 = new Team() { Name="Snakes", Points=3 },
                 },
-                new Dictionary<string, Team>
+                new Game()
                 {
-                    {
-                        "team1", new Team() { Name="Tarantulas", Points=1 }
-                    },
-                    {
-                        "team2", new Team() { Name="FC Awesome", Points=0 }
-
-                    },
+                    Team1 = new Team() { Name="Tarantulas", Points=1 },
+                    Team2 = new Team() { Name="FC Awesome", Points=0 },
                 },
-                new Dictionary<string, Team>
+                new Game()
                 {
-                    {
-                        "team1", new Team() { Name="Lions", Points=1 }
-                    },
-                    {
-                        "team2", new Team() { Name="FC Awesome", Points=1 }
-
-                    },
+                    Team1 = new Team() { Name="Lions", Points=1 },
+                    Team2 = new Team() { Name="FC Awesome", Points=1 },
                 },
-                new Dictionary<string, Team>
+                new Game()
                 {
-                    {
-                        "team1", new Team() { Name="Tarantulas", Points=3 }
-                    },
-                    {
-                        "team2", new Team() { Name="Snakes", Points=1 }
-
-                    },
+                    Team1 = new Team() { Name="Tarantulas", Points=3 },
+                    Team2 = new Team() { Name="Snakes", Points=1 },
                 },
-                new Dictionary<string, Team>
+                new Game()
                 {
-                    {
-                        "team1", new Team() { Name="Lions", Points=4 }
-                    },
-                    {
-                        "team2", new Team() { Name="Grouches", Points=0 }
-
-                    },
-                }
+                    Team1 = new Team() { Name="Lions", Points=4 },
+                    Team2 = new Team() { Name="Grouches", Points=0 },
+                },
             };
         }
 
