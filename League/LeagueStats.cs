@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace League
 {
@@ -15,11 +16,13 @@ namespace League
         {
             var data = _parser.LoadGames();
 
-            var stats = new StatsCalulator(data).Calculate();
-            var sorted = new Sorter(stats).Sort();
-            var ranked = new Ranker(sorted).Rank();
+            var stats = new Stats(data);
 
-            return new Printer(ranked).Print();
+            return stats
+                .CalculateStats()
+                .SortTeams()
+                .RankTeams()
+                .PrintResults();
         }
     }
 }
