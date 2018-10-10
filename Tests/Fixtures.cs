@@ -98,8 +98,13 @@ namespace Tests
                 new Team() { Name="Lions", Score=5, Rank=2 },
                 new Team() { Name="FC Awesome", Score=1, Rank=3 },
                 new Team() { Name="Snakes", Score=1, Rank=3 },
-                new Team() { Name="Grouches", Score=0, Rank=4 },
+                new Team() { Name="Grouches", Score=0, Rank=5 },
             };
+        }
+
+        public static string Output()
+        {
+            return "1. Tarantulas, 6 pts\n2. Lions, 5 pts\n3. FC Awesome, 1 pt\n3. Snakes, 1 pt\n5. Grouches, 0 pts\n";
         }
     }
 }

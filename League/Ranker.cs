@@ -8,24 +8,21 @@ namespace League
     {
         private List<Team> _teams;
 
-        public Ranker(List<Team> stats)
+        public Ranker(List<Team> teams)
         {
-            _teams = stats;
+            _teams = teams;
         }
 
         public List<Team> Rank()
         {
-            var rank = 0;
             return _teams
                 .Select((team, index) =>
                 {
-                    rank = ScoreDidNotChange(team, index) ? rank : rank + 1;
-
                     return new Team()
                     {
                         Name = team.Name,
                         Score = team.Score,
-                        Rank = rank,
+                        Rank = ScoreDidNotChange(team, index) ? index : index + 1,
                     };
                 }).ToList();
         }

@@ -6,16 +6,16 @@ namespace League
 {
     public class Sorter
     {
-        private List<Team> _stats;
+        private List<Team> _teams;
 
-        public Sorter(List<Team> stats)
+        public Sorter(List<Team> teams)
         {
-            _stats = stats;
+            _teams = teams;
         }
 
         public List<Team> Sort()
         {
-            return _stats
+            return _teams
                 .OrderByDescending(team => team.Score)
                 .ThenBy(team => team.Name, StringComparer.Ordinal)
                 .ToList();

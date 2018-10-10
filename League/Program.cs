@@ -12,8 +12,8 @@ namespace League
             // **Parse data into object**
             // **Calculate season scores**
             // **Sort**
-            // Calculate ranking number
-            // Print
+            // **Calculate ranking number**
+            // **Print**
 
             // TODO: Refactor Team/Game
 
@@ -28,11 +28,10 @@ namespace League
                 var stats = new StatsCalulator(parsed).Calculate();
                 var sorted = new Sorter(stats).Sort();
                 var ranked = new Ranker(sorted).Rank();
+                var result = new Printer(ranked).Print();
 
-                foreach (var team in ranked)
-                {
-                    Console.WriteLine($"{team.Name} : {team.Score} : {team.Rank}");
-                }
+                Console.Write(result);
+                
             }
             catch (Exception ex)
             {
