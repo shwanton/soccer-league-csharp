@@ -12,6 +12,7 @@
     <PackageReference Include="xunit.runner.visualstudio" Version="2.3.1" />
     <DotNetCliToolReference Include="dotnet-xunit" Version="2.3.1" />
     <PackageReference Include="System.IO.Abstractions.TestingHelpers" Version="2.1.0.235" />
+    <PackageReference Include="DeepEqual" Version="1.6.0" />
   </ItemGroup>
 
   <ItemGroup>
@@ -19,5 +20,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Remove="UnitTest1.cs" />
+    <Compile Remove="Fixtures\Games.cs" />
   </ItemGroup>
 </Project>

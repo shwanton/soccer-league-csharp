@@ -14,7 +14,7 @@ namespace League
             _data = data;
         }
 
-        public List<Dictionary<string, string>> Parse()
+        public List<Dictionary<string, Team>> Parse()
         {
             return _data
                 .Split("\n")
@@ -25,10 +25,16 @@ namespace League
                     Match m = Regex.Match(line, pattern, RegexOptions.Singleline);
                     GroupCollection groups = m.Groups;
 
-                    return new Dictionary<string, string>
+                    var team1Name = groups[1].Value;
+                    var team1Points = Convert.ToInt32(groups[2].Value);
+
+                    var team2Name = groups[3].Value;
+                    var team2Points = Convert.ToInt32(groups[4].Value);
+
+                    return new Dictionary<string, Team>
                     {
-                        { groups[1].Value, groups[2].Value },
-                        { groups[3].Value, groups[4].Value },
+                        { "team1", new Team() { Name=team1Name, Points=team1Points } },
+                        { "team2", new Team() { Name=team2Name, Points=team2Points } },
                     };
                 })
                 .ToList();
