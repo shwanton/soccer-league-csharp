@@ -8,9 +8,9 @@ namespace League
     {
         private List<Team> _teams;
 
-        public Ranker(List<Team> teams)
+        public Ranker(List<Team> stats)
         {
-            _teams = teams;
+            _teams = stats;
         }
 
         public List<Team> Rank()
@@ -22,14 +22,20 @@ namespace League
                     {
                         Name = team.Name,
                         Score = team.Score,
-                        Rank = ScoreDidNotChange(team, index) ? index : index + 1,
+                        Rank = CalculateRank(team, index),
+                        GoalDiff = team.GoalDiff,
                     };
                 }).ToList();
         }
 
-        private bool ScoreDidNotChange(Team team, int index)
+        private int CalculateRank(Team team, int index)
         {
-            return (index > 1 && team.Score == _teams[index - 1].Score);
+            if (index < 1)
+                return 1;
+
+            var prev = _teams[index - 1];
+            var unchanged = (team.GoalDiff == prev.GoalDiff && team.Score == prev.Score);
+            return unchanged ? index : index + 1;
         }
     }
 }

@@ -18,7 +18,7 @@ namespace League
             return _teams.Aggregate("", (acc, team) =>
             {
                 var points = team.Score == 1 ? "pt" : "pts";
-                var line = $"{team.Rank}. {team.Name}, {team.Score} {points}\n";
+                var line = $"{team.Rank}. {team.Name}, {team.Score} {points}, GD: {team.GoalDiff}\n";
                 return acc + line;
             });
         }

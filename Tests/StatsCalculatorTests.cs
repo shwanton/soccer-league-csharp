@@ -9,7 +9,7 @@ namespace Tests
     public class StatsCalculatorTests
     {
         [Fact]
-        public void StatsCalculator_Calculate_ShouldCalculateScores()
+        public void StatsCalculator_Calculate_ShouldCalculateStats()
         {
             var games = Fixtures.Games();
             var stats = new StatsCalulator(games);

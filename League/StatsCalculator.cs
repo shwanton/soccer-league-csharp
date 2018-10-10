@@ -19,10 +19,10 @@ namespace League
                 .Aggregate(new Dictionary<string, Team>(), (acc, game) =>
                 {
                     if (!acc.ContainsKey(game.Team1.Name))
-                        acc.Add(game.Team1.Name, new Team() { Name = game.Team1.Name, Score = 0 });
+                        acc.Add(game.Team1.Name, CreateTeam(game.Team1.Name));
 
                     if (!acc.ContainsKey(game.Team2.Name))
-                        acc.Add(game.Team2.Name, new Team() { Name = game.Team2.Name, Score = 0 });
+                        acc.Add(game.Team2.Name, CreateTeam(game.Team2.Name));
 
                     var seasonTeam1 = acc[game.Team1.Name];
                     var seasonTeam2 = acc[game.Team2.Name];
@@ -40,10 +40,23 @@ namespace League
                         seasonTeam2.Score += 1;
                     }
 
+                    seasonTeam1.GoalDiff += game.Team1.Points - game.Team2.Points;
+                    seasonTeam2.GoalDiff += game.Team2.Points - game.Team1.Points;
+
                     return acc;
                 })
                 .Values
                 .ToList();
+        }
+
+        private Team CreateTeam(string name)
+        {
+            return new Team()
+            {
+                Name = name,
+                Score = 0,
+                GoalDiff = 0,
+            };
         }
     }
 

@@ -46,11 +46,11 @@ namespace Tests
         {
             return new List<Team>
             {
-                new Team() { Name="Lions", Score=5 },
-                new Team() { Name="Snakes", Score=1 },
-                new Team() { Name="Tarantulas", Score=6 },
-                new Team() { Name="FC Awesome", Score=1 },
-                new Team() { Name="Grouches", Score=0 },
+                new Team() { Name="Lions", Score=5, GoalDiff=4 },
+                new Team() { Name="Snakes", Score=1, GoalDiff=-2 },
+                new Team() { Name="Tarantulas", Score=6, GoalDiff=3 },
+                new Team() { Name="FC Awesome", Score=1, GoalDiff=-1 },
+                new Team() { Name="Grouches", Score=0, GoalDiff=-4 },
             };
         }
 
@@ -58,11 +58,11 @@ namespace Tests
         {
             return new List<Team>
             {
-                new Team() { Name="Tarantulas", Score=6 },
-                new Team() { Name="Lions", Score=5 },
-                new Team() { Name="FC Awesome", Score=1 },
-                new Team() { Name="Snakes", Score=1 },
-                new Team() { Name="Grouches", Score=0 },
+                new Team() { Name="Tarantulas", Score=6, GoalDiff=3 },
+                new Team() { Name="Lions", Score=5, GoalDiff=4 },
+                new Team() { Name="FC Awesome", Score=1, GoalDiff=-1 },
+                new Team() { Name="Snakes", Score=1, GoalDiff=-2 },
+                new Team() { Name="Grouches", Score=0, GoalDiff=-4 },
             };
         }
 
@@ -70,17 +70,17 @@ namespace Tests
         {
             return new List<Team>
             {
-                new Team() { Name="Tarantulas", Score=6, Rank=1 },
-                new Team() { Name="Lions", Score=5, Rank=2 },
-                new Team() { Name="FC Awesome", Score=1, Rank=3 },
-                new Team() { Name="Snakes", Score=1, Rank=3 },
-                new Team() { Name="Grouches", Score=0, Rank=5 },
+                new Team() { Name="Tarantulas", Score=6, Rank=1, GoalDiff=3 },
+                new Team() { Name="Lions", Score=5, Rank=2, GoalDiff=4 },
+                new Team() { Name="FC Awesome", Score=1, Rank=3, GoalDiff=-1 },
+                new Team() { Name="Snakes", Score=1, Rank=4, GoalDiff=-2 },
+                new Team() { Name="Grouches", Score=0, Rank=5, GoalDiff=-4 },
             };
         }
 
         public static string Output()
         {
-            return "1. Tarantulas, 6 pts\n2. Lions, 5 pts\n3. FC Awesome, 1 pt\n3. Snakes, 1 pt\n5. Grouches, 0 pts\n";
+            return "1. Tarantulas, 6 pts, GD: 3\n2. Lions, 5 pts, GD: 4\n3. FC Awesome, 1 pt, GD: -1\n4. Snakes, 1 pt, GD: -2\n5. Grouches, 0 pts, GD: -4\n";
         }
     }
 }
