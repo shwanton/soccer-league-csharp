@@ -20,19 +20,14 @@ namespace League
                     var team1 = acc.ContainsKey(game.Team1.Name) ? acc[game.Team1.Name] : Team.DefaultTeam(game.Team1.Name);
                     var team2 = acc.ContainsKey(game.Team2.Name) ? acc[game.Team2.Name] : Team.DefaultTeam(game.Team2.Name);
 
-                    if (game.Team1.Points > game.Team2.Points)
-                    {
-                        team1.Score += (int)Scoring.Win;
-                    }
-                    else if (game.Team2.Points > game.Team1.Points)
-                    {
-                        team2.Score += (int)Scoring.Win;
-                    }
-                    else
+                    if (game.Team1Win) team1.Score += (int)Scoring.Win;
+                    else if (game.Team2Win) team2.Score += (int)Scoring.Win;
+                    else if (game.Tie)
                     {
                         team1.Score += (int)Scoring.Tie;
                         team2.Score += (int)Scoring.Tie;
                     }
+                    else throw new Exception("Game scores were not valid");
 
                     team1.GoalDiff += game.Team1.Points - game.Team2.Points;
                     team2.GoalDiff += game.Team2.Points - game.Team1.Points;
