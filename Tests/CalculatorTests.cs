@@ -14,9 +14,6 @@ namespace Tests
             var games = Fixtures.Games();
             var expected = Fixtures.Stats();
 
-            Console.Write(Printer.PrintStats(expected));
-            Console.Write(Printer.PrintStats(Calculator.GameStats(games)));
-
             expected.ShouldDeepEqual(Calculator.GameStats(games));
         }
     }

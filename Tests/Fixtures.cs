@@ -16,28 +16,38 @@ namespace Tests
             return new List<Game> {
                 new Game()
                 {
-                    Team1 = new Team() { Name="Lions", Points=3 },
-                    Team2 = new Team() { Name="Snakes", Points=3 },
+                    Team1Name = "Lions",
+                    Team1Points = 3,
+                    Team2Name = "Snakes",
+                    Team2Points = 3,
                 },
                 new Game()
                 {
-                    Team1 = new Team() { Name="Tarantulas", Points=1 },
-                    Team2 = new Team() { Name="FC Awesome", Points=0 },
+                    Team1Name = "Tarantulas",
+                    Team1Points = 1,
+                    Team2Name = "FC Awesome",
+                    Team2Points = 0,
                 },
                 new Game()
                 {
-                    Team1 = new Team() { Name="Lions", Points=1 },
-                    Team2 = new Team() { Name="FC Awesome", Points=1 },
+                    Team1Name = "Lions",
+                    Team1Points = 1,
+                    Team2Name = "FC Awesome",
+                    Team2Points = 1,
                 },
                 new Game()
                 {
-                    Team1 = new Team() { Name="Tarantulas", Points=3 },
-                    Team2 = new Team() { Name="Snakes", Points=1 },
+                    Team1Name = "Tarantulas",
+                    Team1Points = 3,
+                    Team2Name = "Snakes",
+                    Team2Points = 1,
                 },
                 new Game()
                 {
-                    Team1 = new Team() { Name="Lions", Points=4 },
-                    Team2 = new Team() { Name="Grouches", Points=0 },
+                    Team1Name = "Lions",
+                    Team1Points = 4,
+                    Team2Name = "Grouches",
+                    Team2Points = 0,
                 },
             };
         }
@@ -89,7 +99,7 @@ namespace Tests
                 new Team() { Name="Grouches", Score=0, GoalDiff=-4 },
             };
         }
-        
+
         public static List<Team> RankedTied()
         {
             return new List<Team>

@@ -25,28 +25,22 @@ namespace League
                 .LoadData()
                 .Split("\n")
                 .Where(line => !string.IsNullOrEmpty(line))
-                .Select(line =>
-            {
-                string pattern = @"^([\w ]+) (\d+), ([\w ]+) (\d+)";
-                Match m = Regex.Match(line, pattern, RegexOptions.Singleline);
-                GroupCollection groups = m.Groups;
-                
-                return new Game()
-                {
-                    Team1 = CreateTeam(groups[1].Value, groups[2].Value),
-                    Team2 = CreateTeam(groups[3].Value, groups[4].Value),
-                };
-            })
+                .Select(CreateGame)
                 .ToList();
         }
 
-        private Team CreateTeam(string name, string pts)
+        private Game CreateGame(string line)
         {
-            var points = Convert.ToInt32(pts);
-            return new Team()
+            string pattern = @"^([\w ]+) (\d+), ([\w ]+) (\d+)";
+            Match m = Regex.Match(line, pattern, RegexOptions.Singleline);
+            GroupCollection groups = m.Groups;
+
+            return new Game()
             {
-                Name = name,
-                Points = points,
+                Team1Name = groups[1].Value,
+                Team1Points = Convert.ToInt32(groups[2].Value),
+                Team2Name = groups[3].Value,
+                Team2Points = Convert.ToInt32(groups[4].Value),
             };
         }
     }

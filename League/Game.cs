@@ -1,15 +1,30 @@
 ﻿using System;
 namespace League
 {
+    public enum GameOutcome
+    {
+        Team1Win,
+        Team2Win,
+        Tie
+    }
+
     public struct Game
     {
-        public Team Team1 { get; set; }
-        public Team Team2 { get; set; }
+        public string Team1Name { get; set; }
+        public string Team2Name { get; set; }
+        public int Team1Points { get; set; }
+        public int Team2Points { get; set; }
 
-        public bool Tie => Team1.Points == Team2.Points;
+        private bool Tie => Team1Points == Team2Points;
+        private bool Team1Win => Team1Points > Team2Points;
+        private bool Team2Win => Team2Points > Team1Points;
 
-        public bool Team1Win => Team1.Points > Team2.Points;
-
-        public bool Team2Win => Team2.Points > Team1.Points;
+        public GameOutcome Outcome()
+        {
+            if (Team1Win) return GameOutcome.Team1Win;
+            else if (Team2Win) return GameOutcome.Team2Win;
+            else if (Tie) return GameOutcome.Tie;
+            else throw new Exception("Game outcome was invalid");
+        }
     }
 }
