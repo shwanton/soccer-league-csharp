@@ -24,34 +24,28 @@ namespace League
             return _games
                 .Aggregate(new Dictionary<string, Team>(), (acc, game) =>
                 {
-                    if (!acc.ContainsKey(game.Team1.Name))
-                        acc.Add(game.Team1.Name, CreateTeam(game.Team1.Name));
-
-                    if (!acc.ContainsKey(game.Team2.Name))
-                        acc.Add(game.Team2.Name, CreateTeam(game.Team2.Name));
-
-                    var seasonTeam1 = acc[game.Team1.Name];
-                    var seasonTeam2 = acc[game.Team2.Name];
+                    var team1 = acc.ContainsKey(game.Team1.Name) ? acc[game.Team1.Name] : CreateTeam(game.Team1.Name);
+                    var team2 = acc.ContainsKey(game.Team2.Name) ? acc[game.Team2.Name] : CreateTeam(game.Team2.Name);
 
                     if (game.Team1.Points > game.Team2.Points)
                     {
-                        seasonTeam1.Score += (int)Scoring.Win;
+                        team1.Score += (int)Scoring.Win;
                     }
                     else if (game.Team2.Points > game.Team1.Points)
                     {
-                        seasonTeam2.Score += (int)Scoring.Win;
+                        team2.Score += (int)Scoring.Win;
                     }
                     else
                     {
-                        seasonTeam1.Score += (int)Scoring.Tie;
-                        seasonTeam2.Score += (int)Scoring.Tie;
+                        team1.Score += (int)Scoring.Tie;
+                        team2.Score += (int)Scoring.Tie;
                     }
 
-                    seasonTeam1.GoalDiff += game.Team1.Points - game.Team2.Points;
-                    seasonTeam2.GoalDiff += game.Team2.Points - game.Team1.Points;
+                    team1.GoalDiff += game.Team1.Points - game.Team2.Points;
+                    team2.GoalDiff += game.Team2.Points - game.Team1.Points;
 
-                    acc[game.Team1.Name] = seasonTeam1;
-                    acc[game.Team2.Name] = seasonTeam2;
+                    acc[game.Team1.Name] = team1;
+                    acc[game.Team2.Name] = team2;
 
                     return acc;
                 })
