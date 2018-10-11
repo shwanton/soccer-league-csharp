@@ -5,9 +5,10 @@ namespace League
 {
     public interface ILeague
     {
-        ILeague SortTeams();
-        ILeague RankTeams();
-        string PrintTeamStats();
+        List<Team> GetTeamGameStats(List<Game> games);
+        List<Team> SortTeams(List<Team> teams);
+        List<Team> RankTeams(List<Team> teams);
+        string PrintTeamStats(List<Team> teams);
     }
 
     public class LeagueStats : ILeague
@@ -22,34 +23,58 @@ namespace League
 
         public string GetSeason()
         {
-            _stats = GetTeamStats();
-
-            return SortTeams().RankTeams().PrintTeamStats();
-        }
-
-        public ILeague SortTeams()
-        {
-            _stats = Sorter.Sort(_stats);
-
-            return this;
-        }
-
-        public ILeague RankTeams()
-        {
-            _stats = Ranker.Rank(_stats);
-
-            return this;
-        }
-
-        public string PrintTeamStats()
-        {
-            return Printer.PrintStats(_stats);
-        }
-
-        private List<Team> GetTeamStats()
-        {
             var games = _parser.LoadGames();
+
+            return GetStats(games)
+                .SortStats()
+                .RankStats()
+                .PrintStats();
+        }
+
+        private LeagueStats GetStats(List<Game> games)
+        {
+            _stats = GetTeamGameStats(games);
+
+            return this;
+        }
+
+        private LeagueStats SortStats()
+        {
+            _stats = SortTeams(_stats);
+
+            return this;
+        }
+
+        private LeagueStats RankStats()
+        {
+            _stats = RankTeams(_stats);
+
+            return this;
+        }
+
+        private string PrintStats()
+        {
+            return PrintTeamStats(_stats);
+        }
+
+        public List<Team> GetTeamGameStats(List<Game> games)
+        {
             return Calculator.GameStats(games);
+        }
+
+        public List<Team> SortTeams(List<Team> teams)
+        {
+            return Sorter.Sort(teams);
+        }
+
+        public List<Team> RankTeams(List<Team> teams)
+        {
+            return Ranker.Rank(teams);
+        }
+
+        public string PrintTeamStats(List<Team> teams)
+        {
+            return Printer.PrintStats(teams);
         }
     }
 }
