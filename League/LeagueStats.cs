@@ -3,14 +3,14 @@ using System.Collections.Generic;
 
 namespace League
 {
-    public class Stats
+    public class LeagueStats
     {
         private readonly IGameParser _parser;
 
         private List<Game> _games;
         private List<Team> _teams;
 
-        public Stats(IGameParser parser)
+        public LeagueStats(IGameParser parser)
         {
             _parser = parser;
         }
@@ -29,28 +29,28 @@ namespace League
             return new Printer(_teams).Print();
         }
         
-        public Stats LoadData()
+        public LeagueStats LoadData()
         {
             _games = _parser.LoadGames();
 
             return this;
         }
 
-        public Stats CalculateStats()
+        public LeagueStats CalculateStats()
         {
             _teams = new StatsCalulator(_games).Calculate();
 
             return this;
         }
 
-        public Stats SortTeams()
+        public LeagueStats SortTeams()
         {
             _teams = new Sorter(_teams).Sort();
 
             return this;
         }
 
-        public Stats RankTeams()
+        public LeagueStats RankTeams()
         {
             _teams = new Ranker(_teams).Rank();
 
