@@ -17,6 +17,7 @@ namespace League
         {
             return _teams
                 .OrderByDescending(team => team.Score)
+                .ThenByDescending(team => team.GoalDiff)
                 .ThenBy(team => team.Name, StringComparer.Ordinal)
                 .ToList();
         }
