@@ -3,14 +3,17 @@ using System.Collections.Generic;
 
 namespace League
 {
-    public class LeagueStats
+    public interface ILeague
+    {
+        ILeague SortTeams();
+        ILeague RankTeams();
+        string PrintTeamStats();
+    }
+
+    public class LeagueStats : ILeague
     {
         private readonly IGameParser _parser;
-
-        private List<Game> _games;
-        private List<Team> _rawStats;
-        private List<Team> _sortedStats;
-        private List<Team> _rankedStats;
+        private List<Team> _stats;
 
         public LeagueStats(IGameParser parser)
         {
@@ -19,44 +22,34 @@ namespace League
 
         public string GetSeason()
         {
-            return LoadData()
-                .CalculateStats()
-                .SortTeams()
-                .RankTeams()
-                .PrintResults();
+            _stats = GetTeamStats();
+
+            return SortTeams().RankTeams().PrintTeamStats();
         }
-        
-        public LeagueStats LoadData()
+
+        public ILeague SortTeams()
         {
-            _games = _parser.LoadGames();
+            _stats = Sorter.Sort(_stats);
 
             return this;
         }
 
-        public LeagueStats CalculateStats()
+        public ILeague RankTeams()
         {
-            _rawStats = Calculator.GameStats(_games);
+            _stats = Ranker.Rank(_stats);
 
             return this;
         }
 
-        public LeagueStats SortTeams()
+        public string PrintTeamStats()
         {
-            _sortedStats = Sorter.Sort(_rawStats);
-
-            return this;
+            return Printer.PrintStats(_stats);
         }
 
-        public LeagueStats RankTeams()
+        private List<Team> GetTeamStats()
         {
-            _rankedStats = Ranker.Rank(_sortedStats);
-
-            return this;
-        }
-        
-        public string PrintResults()
-        {
-            return Printer.PrintStats(_rankedStats);
+            var games = _parser.LoadGames();
+            return Calculator.GameStats(games);
         }
     }
 }

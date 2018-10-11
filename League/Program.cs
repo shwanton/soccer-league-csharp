@@ -14,6 +14,7 @@ namespace League
                     throw new FileNotFoundException();
 
                 var loader = new GameParser(new FileLoader(fileName));
+
                 var league = new LeagueStats(loader);
 
                 Console.Write(league.GetSeason());
