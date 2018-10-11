@@ -5,12 +5,35 @@ namespace League
 {
     public class Stats
     {
+        private readonly IGameParser _parser;
+
         private List<Game> _games;
         private List<Team> _teams;
 
-        public Stats(List<Game> games)
+        public Stats(IGameParser parser)
         {
-            _games = games;
+            _parser = parser;
+        }
+
+        public string GetSeason()
+        {
+            return LoadData()
+                .CalculateStats()
+                .SortTeams()
+                .RankTeams()
+                .PrintResults();
+        }
+        
+        public string PrintResults()
+        {
+            return new Printer(_teams).Print();
+        }
+        
+        public Stats LoadData()
+        {
+            _games = _parser.LoadGames();
+
+            return this;
         }
 
         public Stats CalculateStats()
@@ -32,12 +55,6 @@ namespace League
             _teams = new Ranker(_teams).Rank();
 
             return this;
-        }
-
-
-        public string PrintResults()
-        {
-            return new Printer(_teams).Print();
         }
     }
 }
