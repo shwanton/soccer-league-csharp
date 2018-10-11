@@ -50,6 +50,9 @@ namespace League
                     seasonTeam1.GoalDiff += game.Team1.Points - game.Team2.Points;
                     seasonTeam2.GoalDiff += game.Team2.Points - game.Team1.Points;
 
+                    acc[game.Team1.Name] = seasonTeam1;
+                    acc[game.Team2.Name] = seasonTeam2;
+
                     return acc;
                 })
                 .Values
