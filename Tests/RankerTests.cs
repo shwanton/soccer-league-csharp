@@ -18,5 +18,16 @@ namespace Tests
 
             expected.ShouldDeepEqual(Ranker.Rank(stats));
         }
+
+
+        [Fact]
+        public void Ranker_Rank_ShouldRankTiedStats()
+        {
+            var stats = Fixtures.SortedTied();
+
+            var expected = Fixtures.RankedTied();
+
+            expected.ShouldDeepEqual(Ranker.Rank(stats));
+        }
     }
 }

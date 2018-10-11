@@ -10,7 +10,7 @@ namespace Tests
     public class SorterTests
     {
         [Fact]
-        public void Sorter_Sort_ShouldSortStatsByScoreAndName()
+        public void Sorter_Sort_ShouldSortStats()
         {
             var stats = Fixtures.Stats();
 

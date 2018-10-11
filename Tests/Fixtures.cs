@@ -4,7 +4,7 @@ using League;
 
 namespace Tests
 {
-    public class Fixtures
+    public struct Fixtures
     {
         public static string Input()
         {
@@ -74,6 +74,30 @@ namespace Tests
                 new Team() { Name="Lions", Score=5, Rank=2, GoalDiff=4 },
                 new Team() { Name="FC Awesome", Score=1, Rank=3, GoalDiff=-1 },
                 new Team() { Name="Snakes", Score=1, Rank=4, GoalDiff=-2 },
+                new Team() { Name="Grouches", Score=0, Rank=5, GoalDiff=-4 },
+            };
+        }
+
+        public static List<Team> SortedTied()
+        {
+            return new List<Team>
+            {
+                new Team() { Name="Lions", Score=5, GoalDiff=5 },
+                new Team() { Name="Tarantulas", Score=5, GoalDiff=4 },
+                new Team() { Name="FC Awesome", Score=2, GoalDiff=2 },
+                new Team() { Name="Snakes", Score=2, GoalDiff=2 },
+                new Team() { Name="Grouches", Score=0, GoalDiff=-4 },
+            };
+        }
+        
+        public static List<Team> RankedTied()
+        {
+            return new List<Team>
+            {
+                new Team() { Name="Lions", Score=5, Rank=1, GoalDiff=5 },
+                new Team() { Name="Tarantulas", Score=5, Rank=2, GoalDiff=4 },
+                new Team() { Name="FC Awesome", Score=2, Rank=3, GoalDiff=2 },
+                new Team() { Name="Snakes", Score=2, Rank=3, GoalDiff=2 },
                 new Team() { Name="Grouches", Score=0, Rank=5, GoalDiff=-4 },
             };
         }
