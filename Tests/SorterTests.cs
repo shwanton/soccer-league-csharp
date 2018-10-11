@@ -13,11 +13,10 @@ namespace Tests
         public void Sorter_Sort_ShouldSortStatsByScoreAndName()
         {
             var stats = Fixtures.Stats();
-            var sorter = new Sorter(stats);
 
             var expected = Fixtures.Sorted();
 
-            expected.ShouldDeepEqual(sorter.Sort());
+            expected.ShouldDeepEqual(Sorter.Sort(stats));
         }
     }
 }

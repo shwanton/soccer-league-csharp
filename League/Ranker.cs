@@ -4,12 +4,44 @@ using System.Linq;
 
 namespace League
 {
-    public interface IIncrementRank
+    public static class Ranker
     {
-         bool CanIncrement(Team team, Team prev);
+
+        public static List<Team> Rank(List<Team> teams)
+        {
+            return teams
+                .Select((team, index) =>
+                {
+                    return new Team()
+                    {
+                        Name = team.Name,
+                        Score = team.Score,
+                        Rank = RankCalulator.Calculate(teams, team, index),
+                        GoalDiff = team.GoalDiff,
+                    };
+                }).ToList();
+        }
     }
 
-    public struct GoalScoreIncrement : IIncrementRank
+    public static class RankCalulator
+    {
+        public static int Calculate(List<Team> teams, Team team, int index)
+        {
+            if (index < 1)
+                return 1;
+
+            Func<Team, Team, bool> canIncrement = new GoalDiffRule().CanIncrement;
+
+            return canIncrement(team, teams[index - 1]) ? index + 1 : index;
+        }
+    }
+
+    public interface IRankRule
+    {
+        bool CanIncrement(Team team, Team prev);
+    }
+
+    public struct GoalDiffRule : IRankRule
     {
         public bool CanIncrement(Team team, Team prev)
         {
@@ -17,37 +49,5 @@ namespace League
         }
     }
 
-    public class Ranker
-    {
-        private List<Team> _teams;
-
-        public Ranker(List<Team> stats)
-        {
-            _teams = stats;
-        }
-
-        public List<Team> Rank()
-        {
-            return _teams
-                .Select((team, index) =>
-                {
-                    return new Team()
-                    {
-                        Name = team.Name,
-                        Score = team.Score,
-                        Rank = CalculateRank(team, index, new GoalScoreIncrement().CanIncrement),
-                        GoalDiff = team.GoalDiff,
-                    };
-                }).ToList();
-        }
-
-        private int CalculateRank(Team team, int index, Func<Team, Team, bool> canIncrement)
-        {
-            if (index < 1)
-                return 1;
-
-
-            return canIncrement(team, _teams[index - 1]) ? index + 1 : index;
-        }
-    }
 }
+

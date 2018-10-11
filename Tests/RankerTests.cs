@@ -13,11 +13,10 @@ namespace Tests
         public void Ranker_Rank_ShouldRankStats()
         {
             var stats = Fixtures.Sorted();
-            var ranker = new Ranker(stats);
 
             var expected = Fixtures.Ranked();
 
-            expected.ShouldDeepEqual(ranker.Rank());
+            expected.ShouldDeepEqual(Ranker.Rank(stats));
         }
     }
 }

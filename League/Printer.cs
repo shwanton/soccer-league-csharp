@@ -4,18 +4,11 @@ using System.Linq;
 
 namespace League
 {
-    public class Printer
+    public static class Printer
     {
-        private List<Team> _teams;
-
-        public Printer(List<Team> teams)
+        public static string PrintStats(List<Team> teams)
         {
-            _teams = teams;
-        }
-
-        public string Print()
-        {
-            return _teams.Aggregate("", (acc, team) =>
+            return teams.Aggregate("", (acc, team) =>
             {
                 var points = team.Score == 1 ? "pt" : "pts";
                 var line = $"{team.Rank}. {team.Name}, {team.Score} {points}, GD: {team.GoalDiff}\n";

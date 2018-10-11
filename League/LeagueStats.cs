@@ -24,11 +24,6 @@ namespace League
                 .PrintResults();
         }
         
-        public string PrintResults()
-        {
-            return new Printer(_teams).Print();
-        }
-        
         public LeagueStats LoadData()
         {
             _games = _parser.LoadGames();
@@ -38,23 +33,28 @@ namespace League
 
         public LeagueStats CalculateStats()
         {
-            _teams = new StatsCalulator(_games).Calculate();
+            _teams = Calculator.GameStats(_games);
 
             return this;
         }
 
         public LeagueStats SortTeams()
         {
-            _teams = new Sorter(_teams).Sort();
+            _teams = Sorter.Sort(_teams);
 
             return this;
         }
 
         public LeagueStats RankTeams()
         {
-            _teams = new Ranker(_teams).Rank();
+            _teams = Ranker.Rank(_teams);
 
             return this;
+        }
+        
+        public string PrintResults()
+        {
+            return Printer.PrintStats(_teams);
         }
     }
 }

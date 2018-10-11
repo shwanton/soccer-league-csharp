@@ -12,11 +12,10 @@ namespace Tests
         public void Printer_Print_ShouldPrintStats()
         {
             var stats = Fixtures.Ranked();
-            var printer = new Printer(stats);
 
             var expected = Fixtures.Output();
 
-            Assert.Equal(expected, printer.Print());
+            Assert.Equal(expected, Printer.PrintStats(stats));
         }
     }
 }

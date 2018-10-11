@@ -6,17 +6,15 @@ using Xunit;
 
 namespace Tests
 {
-    public class StatsCalculatorTests
+    public class CalculatorTests
     {
         [Fact]
-        public void StatsCalculator_Calculate_ShouldCalculateStats()
+        public void Calculator_Calculate_ShouldCalculateStats()
         {
             var games = Fixtures.Games();
-            var stats = new StatsCalulator(games);
-
             var expected = Fixtures.Stats();
 
-            expected.ShouldDeepEqual(stats.Calculate());
+            expected.ShouldDeepEqual(Calculator.GameStats(games));
         }
     }
 
