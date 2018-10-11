@@ -8,7 +8,9 @@ namespace League
         private readonly IGameParser _parser;
 
         private List<Game> _games;
-        private List<Team> _teams;
+        private List<Team> _rawStats;
+        private List<Team> _sortedStats;
+        private List<Team> _rankedStats;
 
         public LeagueStats(IGameParser parser)
         {
@@ -33,28 +35,28 @@ namespace League
 
         public LeagueStats CalculateStats()
         {
-            _teams = Calculator.GameStats(_games);
+            _rawStats = Calculator.GameStats(_games);
 
             return this;
         }
 
         public LeagueStats SortTeams()
         {
-            _teams = Sorter.Sort(_teams);
+            _sortedStats = Sorter.Sort(_rawStats);
 
             return this;
         }
 
         public LeagueStats RankTeams()
         {
-            _teams = Ranker.Rank(_teams);
+            _rankedStats = Ranker.Rank(_sortedStats);
 
             return this;
         }
         
         public string PrintResults()
         {
-            return Printer.PrintStats(_teams);
+            return Printer.PrintStats(_rankedStats);
         }
     }
 }
